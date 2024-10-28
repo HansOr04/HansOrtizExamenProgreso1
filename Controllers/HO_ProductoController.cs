@@ -19,13 +19,14 @@ namespace HansOrtizExamenProgreso1.Controllers
         }
 
         // GET: HO_Producto
-        public async Task<IActionResult> Index()
+        
+        public async Task<IActionResult> HO_Index()
         {
             return View(await _context.HO_Producto.ToListAsync());
         }
 
         // GET: HO_Producto/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> HO_Details(int? id)
         {
             if (id == null)
             {
@@ -43,7 +44,7 @@ namespace HansOrtizExamenProgreso1.Controllers
         }
 
         // GET: HO_Producto/Create
-        public IActionResult Create()
+        public IActionResult HO_Create()
         {
             return View();
         }
@@ -53,19 +54,19 @@ namespace HansOrtizExamenProgreso1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HO_ProductoId,HO_ProductoName,HO_ProductoDescripcion,HO_Price,HO_Variantes,HO_CreateAt")] HO_Producto hO_Producto)
+        public async Task<IActionResult> HO_Create([Bind("HO_ProductoId,HO_ProductoName,HO_ProductoDescripcion,HO_Price,HO_Variantes,HO_CreateAt")] HO_Producto hO_Producto)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(hO_Producto);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(HO_Index));
             }
             return View(hO_Producto);
         }
 
         // GET: HO_Producto/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> HO_Edit(int? id)
         {
             if (id == null)
             {
@@ -85,7 +86,7 @@ namespace HansOrtizExamenProgreso1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HO_ProductoId,HO_ProductoName,HO_ProductoDescripcion,HO_Price,HO_Variantes,HO_CreateAt")] HO_Producto hO_Producto)
+        public async Task<IActionResult> HO_Edit(int id, [Bind("HO_ProductoId,HO_ProductoName,HO_ProductoDescripcion,HO_Price,HO_Variantes,HO_CreateAt")] HO_Producto hO_Producto)
         {
             if (id != hO_Producto.HO_ProductoId)
             {
@@ -110,13 +111,13 @@ namespace HansOrtizExamenProgreso1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(HO_Index));
             }
             return View(hO_Producto);
         }
 
         // GET: HO_Producto/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> HO_Delete(int? id)
         {
             if (id == null)
             {
@@ -134,9 +135,9 @@ namespace HansOrtizExamenProgreso1.Controllers
         }
 
         // POST: HO_Producto/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("HO_Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> HO_DeleteConfirmed(int id)
         {
             var hO_Producto = await _context.HO_Producto.FindAsync(id);
             if (hO_Producto != null)
@@ -145,7 +146,7 @@ namespace HansOrtizExamenProgreso1.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(HO_Index));
         }
 
         private bool HO_ProductoExists(int id)
